@@ -2,6 +2,11 @@
 require_once('classes/CRUD.php');
 $crud = new CRUD;
 $select = $crud->select('articles');
+
+
+// $selectUser = $crud->select('users');
+// $selectComment = $crud->select('comments');
+// $selectCategories = $crud->select('categories');
 //print_r($select);
 
 ?>
@@ -26,26 +31,44 @@ $select = $crud->select('articles');
     <main>
         <?php
         foreach ($select as $row) {
+            // print_r($row);
+
+            // echo $row['users_id'];
+            // echo "<br>";
+            // echo $row['categories_id'];
+            $user = $crud->selectId("users", $row['users_id']);
+            $categorie = $crud->selectId("categories", $row['categories_id']);
 
         ?>
             <article>
                 <div class="post-title">
                     <h2><?= $row['title']; ?></h2>
-                    <div class="categories"><small>Category: Nome Categoria</small></div>
+                    <div class="categories"><small>Category: <?= $categorie['name']; ?></small></div>
                 </div>
                 <div class="post-content">
                     <p><?= $row['content']; ?></p>
                 </div>
                 <div class="post-footer">
-                    <div class="post-info">by Nome User (email user)</strong> on <?= $row['date']; ?></div>
+                    <div class="post-info">by <?= $user['name']; ?> (<?= $user['email']; ?>)</strong> on <?= $row['date']; ?></div>
                     <div class="post-edit">edit | delete</div>
                 </div>
                 <div class="post-comments">
                     <h4>Comments</h4>
-                    <div class="comment">
-                        <div class="comment-text">MESSAGE COMMENT</div>
-                        <div class="comment-info"><small>AUTHOR COMMENT on DATE</small></div>
-                    </div>
+                    <?php
+                    $comments = $crud->selectWhere("comments", $row['id'], "articles_id");
+                    // print_r($comment)
+                    foreach ($comments as $comment) {
+                        $commentAuthor = $crud->selectId("users", $comment['users_id']);
+
+                    ?>
+
+                        <div class="comment">
+                            <div class="comment-text"><?= $comment['message']; ?></div>
+                            <div class="comment-info"><small><?= $commentAuthor['name']; ?> on <?= $comment['date']; ?></small></div>
+                        </div>
+                    <?php } ?>
+
+
                 </div>
             </article> <?php
                     }
