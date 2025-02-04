@@ -35,15 +35,40 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
     <main>
         <div class="container">
             <form action="article-update.php" method="post">
+                <input type="hidden" name="id" value="<?= $id; ?>">
                 <h2>Update article</h2><br>
                 <label>Title
                     <input type="text" name="title" value="<?= $title; ?>">
                 </label>
                 <label>Content<br>
-                    <textarea id="article" name="article" rows="4" cols="50"><?= $content; ?></textarea>
+                    <textarea id="content" name="content" rows="4" cols="50"><?= $content; ?></textarea>
                 </label>
+                <label for="users_id">User</label>
+                <select name="users_id" id="users_id">
+                    <?php
+                    $users = $crud->select("users");
+                    foreach ($users as $user) {
+
+                    ?>
+                        <option value="<?= $user['id']; ?>"><?= $user['name']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+                <label for="categories_id">categorie</label>
+                <select name="categories_id" id="categories_id">
+                    <?php
+                    $categories = $crud->select("categories");
+                    foreach ($categories as $categorie) {
+
+                    ?>
+                        <option value="<?= $categorie['id']; ?>"><?= $categorie['name']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
                 <label>Date
-                    <input type="date" id="data" name="data" value="<?= $data; ?>">
+                    <input type="date" id="date" name="date" value="<?= $date; ?>">
                 </label>
                 <input type="submit" value="Save" class="btn">
             </form>

@@ -54,6 +54,25 @@ class CRUD extends PDO
         }
     }
 
+    public function update($table, $data, $field = "id")
+    {
+        $fieldName = null;
+        foreach ($data as $key => $value) {
+            $fieldName .= "$key = :$key, ";
+        }
+        $fieldName = rtrim($fieldName, ', ');
+        $sql = "UPDATE $table SET $fieldName WHERE $field = :$field";
+        $stmt = $this->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function selectWhere($table, $value, $field)
     {
         $sql = "SELECT * FROM $table WHERE $field = :$field";
@@ -61,7 +80,7 @@ class CRUD extends PDO
         $stmt->bindValue(":$field", $value);
         $stmt->execute();
         $count = $stmt->rowCount();
-        if ($count == 1) {
+        if ($count >= 1) {
             return $stmt->fetchAll();
         } else {
             return false;

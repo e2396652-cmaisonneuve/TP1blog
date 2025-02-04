@@ -1,7 +1,7 @@
 <?php
 require_once('classes/CRUD.php');
 $crud = new CRUD;
-$select = $crud->select('users', 'name', 'desc');
+$select = $crud->select('users', 'name', 'asc');
 
 ?>
 

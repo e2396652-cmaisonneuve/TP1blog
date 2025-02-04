@@ -37,7 +37,7 @@ $crud = new CRUD;
                     <input type="text" name="name">
                 </label>
                 <label>E-mail
-                    <input type="text" name="email">
+                    <input type="email" name="email">
                 </label>
 
                 <input type="submit" value="Save" class="btn">

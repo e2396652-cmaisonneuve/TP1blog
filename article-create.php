@@ -1,9 +1,7 @@
 <?php
 require_once('classes/CRUD.php');
 $crud = new CRUD;
-//$select = $crud->select('article', 'name', 'desc');
-//print_r($select);
-
+$select = $crud->select('articles');
 ?>
 
 <!DOCTYPE html>
@@ -27,15 +25,42 @@ $crud = new CRUD;
         <div class="container">
             <form action="article-store.php" method="post">
                 <h2>New article</h2><br>
+
                 <label>Title
                     <input type="text" name="title">
                 </label>
+
                 <label>Content<br>
-                    <textarea id="article" name="article" rows="4" cols="50"></textarea>
+                    <textarea id="content" name="content" rows="4" cols="50"></textarea>
                 </label>
+                <label for="users_id">User</label>
+                <select name="users_id" id="users_id">
+                    <?php
+                     $users = $crud->select("users");
+                    foreach ($users as $user) {
+                       
+                    ?>
+                        <option value="<?= $user['id']; ?>"><?= $user['name']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+                <label for="categories_id">Categorie</label>
+                <select name="categories_id" id="categories_id">
+                    <?php
+                     $categories = $crud->select("categories");
+                    foreach ($categories as $categorie) {
+                       
+                    ?>
+                        <option value="<?= $categorie['id']; ?>"><?= $categorie['name']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
                 <label>Date
-                    <input type="date" id="data" name="data">
+                    <input type="date" id="date" name="date">
                 </label>
+
                 <input type="submit" value="Save" class="btn">
             </form>
         </div>

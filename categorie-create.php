@@ -1,9 +1,6 @@
 <?php
 require_once('classes/CRUD.php');
 $crud = new CRUD;
-//$select = $crud->select('categorie', 'name', 'desc');
-//print_r($select);
-
 ?>
 
 <!DOCTYPE html>

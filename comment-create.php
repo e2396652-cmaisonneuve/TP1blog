@@ -1,9 +1,7 @@
 <?php
 require_once('classes/CRUD.php');
 $crud = new CRUD;
-//$select = $crud->select('comment', 'name', 'desc');
-//print_r($select);
-
+$select = $crud->select('comments');
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +28,34 @@ $crud = new CRUD;
                 <label>Message<br>
                     <textarea id="message" name="message" rows="4" cols="50"></textarea>
                 </label>
+                <label for="users_id">User</label>
+                <select name="users_id" id="users_id">
+                    <?php
+                    $users = $crud->select("users");
+                    foreach ($users as $user) {
+
+                    ?>
+                        <option value="<?= $user['id']; ?>"><?= $user['name']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+                <label for="articles_id">Article</label>
+                <select name="articles_id" id="articles_id">
+                    <?php
+                    $articles = $crud->select("articles");
+                    foreach ($articles as $article) {
+
+                    ?>
+                        <option value="<?= $article['id']; ?>"><?= $article['title']; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+                <label>Date
+                    <input type="date" id="date" name="date">
+                </label>
+
                 <input type="submit" value="Save" class="btn">
             </form>
         </div>

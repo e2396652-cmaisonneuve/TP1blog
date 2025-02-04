@@ -34,8 +34,9 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
     <?php include 'includes/header.php'; ?>
     <main>
         <div class="container">
-            <form action="user-store.php" method="post">
-                <h2>New user</h2><br>
+            <form action="user-update.php" method="post">
+                <h2>Edit user</h2><br>
+                <input type="hidden" name="id" value="<?= $id; ?>">
                 <label>Username
                     <input type="text" name="username" value="<?= $username; ?>">
                 </label>

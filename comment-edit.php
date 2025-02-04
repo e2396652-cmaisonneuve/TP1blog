@@ -3,14 +3,14 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
     $id = $_GET['id'];
     require_once('classes/CRUD.php');
     $crud = new CRUD;
-    $categorie = $crud->selectId('categories', $id);
-    if ($categorie) {
-        extract($categorie);
+    $comment = $crud->selectId('comments', $id);
+    if ($comment) {
+        extract($comment);
     } else {
-        header('location:categorie-index.php');
+        header('location:comment-index.php');
     }
 } else {
-    header('location:categorie-index.php');
+    header('location:comment-index.php');
 }
 
 ?>
@@ -34,11 +34,11 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
     <?php include 'includes/header.php'; ?>
     <main>
         <div class="container">
-            <form action="categorie-update.php" method="post">
-                <h2>New categorie</h2><br>
+            <form action="comment-update.php" method="post">
+                <h2>New comment</h2><br>
                 <input type="hidden" name="id" value="<?= $id; ?>">
-                <label>Name
-                    <input type="text" name="name" value="<?= $name; ?>">
+                <label>Message<br>
+                    <textarea id="message" name="message" rows="4" cols="50"><?= $message; ?></textarea>
                 </label>
                 <input type="submit" value="Save" class="btn">
             </form>
