@@ -58,7 +58,7 @@ if (!$select) {
                     <?php
                         }
                     } else {
-                        echo '<div class="comment-text"><p>No comments yet.</p></div></div></div></article>';
+                        echo '<div class="comment-text"><small><p>No comments yet, click <a href="comment-create.php">here to add one</a>.</small></p></div></div></div></article>';
                     }
                     ?>
                 </div>
