@@ -1,13 +1,15 @@
 <header>
+    <div class="header-img container-top">
+        <h1>Blog</h1>
+    </div>
     <div class="container-top">
-        <h1><a href="index.php">Blog</a></h1>
         <nav>
             <ul>
-                <li><a href="article-create.php">add article</a></li>
-                <li><a href="categorie-create.php">add categorie</a></li>
-                <li><a href="user-create.php">add user</a></li>
-                <li><a href="comment-create.php">add comment</a></li>
-                <li><a href="login.php">login</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="article-create.php">Add Article</a></li>
+                <li><a href="categorie-create.php">Add Categorie</a></li>
+                <li><a href="user-create.php">Create User</a></li>
+                <li><a href="comment-create.php">Add Comment</a></li>
             </ul>
         </nav>
     </div>

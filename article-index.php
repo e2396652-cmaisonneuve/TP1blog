@@ -23,7 +23,7 @@ $select = $crud->select('articles', 'id', 'asc');
 <body>
     <?php include 'includes/header.php'; ?>
     <main>
-        <h1>Users</h1>
+        <h1>Articles</h1>
         <table>
             <thead>
                 <tr>
